@@ -1,0 +1,73 @@
+- hosts: localhost
+  tasks:
+    - name: Install gpg2
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install tmux
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install openJDK 8
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install Spotify
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install mono
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install dotnetcore
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install openJDK 8
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install git
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install nvm
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install vsCode
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install jetbrains Toolbox
+      become: yes
+      package:
+        name:
+        state: present
+
+    - name: Install oh-my-zsh
+      become: yes
+      package:
+        name:
+        state: present
