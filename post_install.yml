@@ -87,12 +87,18 @@
 
 # chrome, chromium
 # pyenv, 
-# appimages - nextCloud
+# appimages - nextCloud, truefire
 # ranger, nnn,
 # texstudio
 # texlive
 # vim
 # gimp
 # vlc
+# signal
+# docker
+# filezilla
+# teamviewer, skype
+# nerdfonts
+# rp alias ripgrep
 
 # extensions and fonts via gitrepos
