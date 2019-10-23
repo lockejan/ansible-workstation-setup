@@ -1,21 +1,20 @@
 - hosts: localhost
   tasks:
     - name: Add repo and install mono-devel
-      become: yes
       yum_repository:
         name: mono
         description: mono develop repo for centOs
         gpgkey: "http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef"
         file: mono-centos8-stable
         baseurl: https://download.mono-project.com/repo/centos8-stable.repo
+        when:
 
-      package:
-        name: mono-devel
-        state: present
+      # package:
+      #   name: mono-devel
+      #   state: present
 
     # prerequisite for dotnet - https://dotnet.microsoft.com/download/linux-package-manager/fedora30/sdk-current
     - name: Add dotnet core repo and install sdk 3.0
-      become: yes
       yum_repository:
         name: mono
         description: microsoft repo for dotnet core sdk's
@@ -23,9 +22,9 @@
         file: microsoft-prod
         baseurl: https://packages.microsoft.com/config/fedora/30/prod.repo
 
-      package:
-        name: dotnet-sdk-3.0
-        state: present
+      # package:
+      #   name: dotnet-sdk-3.0
+      #   state: present
 
     - name: Install java openJDK's
       package:
