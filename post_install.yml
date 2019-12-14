@@ -1,30 +1,37 @@
-- hosts: localhost
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
   tasks:
-    - name: Add repo and install mono-devel
-      yum_repository:
-        name: mono
-        description: mono develop repo for centOs
-        gpgkey: "http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef"
-        file: mono-centos8-stable
-        baseurl: https://download.mono-project.com/repo/centos8-stable.repo
-        when:
+ #   - name: Add repo and install mono-devel
+  #    yum_repository:
+   ##     name: mono
+     #   description: mono develop repo for centOs
+      #  gpgkey: "http://pool.sks-keyservers.net/pks/lookup?op=get&search=0x3fa7e0328081bff6a14da29aa6a19b38d3d831ef"
+       # file: mono-centos8-stable
+       # baseurl: https://download.mono-project.com/repo/centos8-stable.repo
+       # when:
 
       # package:
       #   name: mono-devel
       #   state: present
 
     # prerequisite for dotnet - https://dotnet.microsoft.com/download/linux-package-manager/fedora30/sdk-current
-    - name: Add dotnet core repo and install sdk 3.0
-      yum_repository:
-        name: mono
-        description: microsoft repo for dotnet core sdk's
-        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-        file: microsoft-prod
-        baseurl: https://packages.microsoft.com/config/fedora/30/prod.repo
+   # - name: Add dotnet core repo and install sdk 3.0
+    #  yum_repository:
+     #   name: mono
+      #  description: microsoft repo for dotnet core sdk's
+      #  gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+      #  file: microsoft-prod
+      #  baseurl: https://packages.microsoft.com/config/fedora/30/prod.repo
 
       # package:
       #   name: dotnet-sdk-3.0
       #   state: present
+    - name: import pubKey of microsoft repo
+      command: sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+    - name: create repo entry
+      shell: "sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'"
 
     - name: Install java openJDK's
       package:
@@ -39,9 +46,44 @@
           - vim
           - zsh
           - tmux
+          - code
           - gnupg2
+          - util-linux-user
+          - vagrant
+          - virtualbox
+          - curl
+          - git
+          - ripgrep
+          - php-cli
+          - gnome-shell-extension-pomodoro
         state: present
         update_cache: yes
+
+    - name: install nvm
+      command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash
+
+    - name: activate rpmfusion
+      command: dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+      https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+    - name: multimedia post-install
+      command: sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+
+    - name: install sound-and-video complement package
+      command: sudo dnf groupupdate sound-and-video
+
+    - name: change shell to zsh for root
+      command: "chsh -s /bin/zsh root"
+
+    - name: change shell to zsh for user
+      command: "chsh -s /bin/zsh smittie"
+    
+    - name: copy kerberos config
+      copy:
+        src: krb5.conf
+        dest: /etc/
+
+        
     # - name: Install Spotify - https://docs.fedoraproject.org/en-US/quick-docs/installing-spotify/
     #   become: yes
     #   package:
