@@ -4,54 +4,69 @@
 - name: install language server
   git:
   with_items:
-    - clojure
-    - latex
-    - scala
+     - clojure
+     - latex
+     - scala
 
 - name: install ctrlp plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/ctrlpvim/ctrlp.vim.git
+     version: master
+     dest: "~/.vim/pack/default/start/ctrlp.vim"
 
 - name: install coc plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/neoclide/coc.nvim
+     version: master
+     dest: "~/.vim/pack/coc/start/coc.nvim"
+#curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
 
 - name: install gruvbox theme
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/morhetz/gruvbox.git
+     version: master
+     dest: "~/.vim/pack/default/start/gruvbox"
 
 - name: install nerdtree plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/scrooloose/nerdtree.git
+     version: master
+     dest: "~/.vim/pack/vendor/start/nerdtree"
+     #vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 
 - name: install nerdtree-git plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/Xuyuanp/nerdtree-git-plugin.git
+     version: master
+     dest: "~/.vim/pack/vendor/start/nerdtree-git-plugin"
 
 - name: install vim-devicons plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: git@github.com:ryanoasis/vim-devicons.git
+     version: master
+     dest: "~/.vim/pack/vendor/start/vim-devicons"
 
 - name: install vim-nerdtree-sync plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: https://github.com/unkiwii/vim-nerdtree-sync.git
+     version: master
+     dest: "~/.vim/pack/vendor/start/vim-nerdtree-sync"
 
 - name: install nerdtree-synatx-highlight plugin
   git:
-    repo: git://github.com/gradle/gradle-completion
-    version: master
-    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+     repo: git@github.com:tiagofumo/vim-nerdtree-syntax-highlight.git
+     version: master
+     dest: "~/.vim/pack/vendor/start/vim-nertree-syntax-highlight"
+
+- name: install vim-surround
+  git:
+     repo: https://github.com/tpope/vim-surround.git
+     version: master
+     dest: "~/.vim/pack/tpope/start/surround"
+     #vim -u NONE -c "helptags surround/doc" -c q
+
+- name: install vim-hardtime
+  git:
+     repo: https://github.com/takac/vim-hardtime
+     version: master
+     dest: "~/.vim/pack/hardtime/start/vim-hardtime"
