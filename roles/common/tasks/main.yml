@@ -1,0 +1,9 @@
+---
+  
+- name: Install packages
+      package:
+        name:
+          - java-1.8.0-openjdk-devel
+          - java-latest-openjdk-devel
+        state: present
+        update_cache: yes

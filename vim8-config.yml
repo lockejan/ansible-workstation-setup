@@ -1,0 +1,57 @@
+---
+- name: import coc-settings and vimrc
+
+- name: install language server
+  git:
+  with_items:
+    - clojure
+    - latex
+    - scala
+
+- name: install ctrlp plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install coc plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install gruvbox theme
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install nerdtree plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install nerdtree-git plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install vim-devicons plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install vim-nerdtree-sync plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"
+
+- name: install nerdtree-synatx-highlight plugin
+  git:
+    repo: git://github.com/gradle/gradle-completion
+    version: master
+    dest: "~/.oh-my-zsh/custom/plugins/gradle-completion"

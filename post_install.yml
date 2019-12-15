@@ -2,6 +2,27 @@
   connection: local
   become: yes
   tasks:
+    - name: update packages
+      dnf: name=* state=latest
+    - name: install the 'Development tools' package group
+      dnf: name="@Development tools" state=present
+    - name: install plugins core
+      dnf: name=dnf-plugins-core state=latest
+    - name: get Fedora version
+      command: rpm -E %fedora
+      register: fedora_version
+      args:
+        warn: false
+    - name: install rpmfusion
+      dnf:
+        name:
+          - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm"
+          - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm"
+        state: latest
+    # - name: install elasticsearch rpm key
+    #   rpm_key:
+    #     key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    #     state: present
  #   - name: Add repo and install mono-devel
   #    yum_repository:
    ##     name: mono
@@ -11,18 +32,30 @@
        # baseurl: https://download.mono-project.com/repo/centos8-stable.repo
        # when:
 
+
+#     - name: Add repo and install mono-devel
+#       yum_repository:
+#         name: mono
+#         description: mono develop repo for centOs
+#         baseurl: https://download.mono-project.com/repo/centos8-stable/
+#         gpgkey: https://download.mono-project.com/repo/xamarin.gpg
+#         gpgcheck: true
+#         enabled: yes
+#         file: mono-centos8-stable
+
       # package:
       #   name: mono-devel
       #   state: present
-
     # prerequisite for dotnet - https://dotnet.microsoft.com/download/linux-package-manager/fedora30/sdk-current
-   # - name: Add dotnet core repo and install sdk 3.0
-    #  yum_repository:
-     #   name: mono
-      #  description: microsoft repo for dotnet core sdk's
-      #  gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-      #  file: microsoft-prod
-      #  baseurl: https://packages.microsoft.com/config/fedora/30/prod.repo
+    - name: Add dotnet core repo and install sdk 3.0
+      yum_repository:
+        name: dotnet core
+        description: microsoft repo for dotnet core sdk's
+        baseurl: https://packages.microsoft.com/config/fedora/30/prod/
+        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+        gpgcheck: true
+        enabled: yes
+        file: microsoft-prod
 
       # package:
       #   name: dotnet-sdk-3.0
@@ -30,8 +63,8 @@
     - name: import pubKey of microsoft repo
       command: sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
-    - name: create repo entry
-      shell: "sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'"
+    # - name: create repo entry
+    #   shell: "sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'"
 
     - name: Install java openJDK's
       package:
@@ -56,6 +89,19 @@
           - ripgrep
           - php-cli
           - gnome-shell-extension-pomodoro
+          - vlc
+          - trash-cli
+          - tilix
+          - sbt
+          - ranger
+          - nnn 
+          - neofetch
+          - htop
+          - gimp
+          - the_silver_searcher
+          - fuse-exfat
+          - filezilla
+          - chromium
         state: present
         update_cache: yes
 
@@ -66,8 +112,8 @@
       command: dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
       https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-    - name: multimedia post-install
-      command: sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+    # - name: multimedia post-install
+    #   command: sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 
     - name: install sound-and-video complement package
       command: sudo dnf groupupdate sound-and-video
@@ -93,22 +139,19 @@
     # - name: Install vsCode
     # - name: Install jetbrains Toolbox - https://www.jetbrains.com/toolbox-app/
     # - name: Install oh-my-zsh - https://github.com/robbyrussell/oh-my-zsh
-# ranger, nnn, vim-common, texstudio, texlive-full, gimp, vlc, filezilla, ripgrep, teamviewer
+
+# texstudio, texlive-full, teamviewer
 
 # chrome,
-# chromium freeworld?
 
-# pyenv,
 # appimages - nextCloud, truefire
 # signal - https://snapcraft.io/signal-desktop
 # docker
 # skypeforlinux
 # nerdfonts
 # leiningen
+# desktop wallpaper
+# settings for dynamic wallpaper
 
 # extensions and fonts via gitrepos
 # config for vscode - https://code.visualstudio.com/docs/setup/linux, zsh, vim, ...
-
-# virtual box ???
-# kvm libvirt ???
-#
