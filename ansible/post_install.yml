@@ -101,6 +101,8 @@
              - fuse-exfat
              - filezilla
              - chromium
+             - krb5-libs
+             - krb5-workstation
           state: present
           update_cache: yes
 

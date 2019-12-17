@@ -1,0 +1,18 @@
+- hosts: localhost
+  tasks:
+     - name: Enable Night Light
+       dconf:
+          key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+          value: true
+     - name: Set Night Light Temperature
+       dconf:
+          key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
+          value: uint32 5500
+     - name: Generate gpg2 key
+       command: echo "generating..."
+     - name: install AdMin theme
+       package:
+          name: sassc
+       # $ git clone https://github.com/nrhodes91/AdMin ~/.themes/AdMin
+       # $ for theme in ~/.themes/AdMin/admin-gtk*; do ln -sf $theme ~/.themes/; done
+       # $ find ~/.themes/AdMin -type f -name parse-sass.sh -execdir {} \;
