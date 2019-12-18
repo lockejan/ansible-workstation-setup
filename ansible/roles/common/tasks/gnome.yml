@@ -1,0 +1,7 @@
+---
+- name: enable copr for flat-remix-icons
+  command: sudo dnf copr enable daniruiz/flat-remix
+
+- name: install flat-remix-icons
+  package:
+     name: flat-remix

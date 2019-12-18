@@ -1,9 +1,17 @@
 ---
-  
 - name: Install packages
-      package:
-        name:
-          - java-1.8.0-openjdk-devel
-          - java-latest-openjdk-devel
-        state: present
-        update_cache: yes
+  package:
+     name:
+        - java-1.8.0-openjdk-devel
+        - java-latest-openjdk-devel
+     state: present
+     update_cache: yes
+
+- name: install gradle
+  command: curl "https://gradle.org/next-steps/?version=6.0.1&format=all"
+#https://gradle.org/install/
+
+# install leiningen
+# install jabber??
+- name: install joplin
+  command: sudo dnf copr enable taw/joplin && sudo dnf install joplin
