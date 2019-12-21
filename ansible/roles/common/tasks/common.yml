@@ -1,0 +1,123 @@
+---
+- name: update packages
+  dnf:
+    name: "*"
+    state: latest
+
+- name: install the 'Development tools' package group
+  dnf:
+    name: "@Development tools"
+    state: present
+
+- name: install plugins core
+  dnf:
+    name: dnf-plugins-core
+    state: latest
+
+# - name: autoremove uneeded packages
+#   dnf:
+#     autoremove: yes
+#   become: yes
+
+- name: get Fedora version
+  command: rpm -E %fedora
+  register: fedora_version
+  args:
+    warn: false
+
+- name: install rpmfusion
+  dnf:
+    name:
+      - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm"
+      - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm"
+    state: latest
+
+- name: import pubKey of microsoft repo
+  command: sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Add dotnet core repo and install sdk 3.0
+  yum_repository:
+    name: dotnet core
+    description: microsoft repo for dotnet core sdk's
+    baseurl: https://packages.microsoft.com/config/fedora/30/prod/
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    gpgcheck: true
+    enabled: yes
+    file: microsoft-prod
+
+- name: create repo entry for vs code
+  yum_repository:
+    name: code
+    description: Visual Studio Code
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+    enabled: yes
+    gpgcheck: true
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    file: vscode
+
+- name: import google chrome repo
+  yum_repository:
+    name: google-chrome
+    description: google-chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    enabled: yes
+    gpgcheck: true
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+    file: google-chrome
+
+- name: Install basic packages
+  package:
+    name:
+      - vim
+      - zsh
+      - tmux
+      - code
+      - gnupg2
+      - util-linux-user
+      - vagrant
+      - VirtualBox
+      - flatpak
+      - curl
+      - git
+      - ripgrep
+      - php-cli
+      - gnome-shell-extension-pomodoro
+      - vlc
+      - trash-cli
+      - tilix
+      - ranger
+      - nnn
+      - neofetch
+      - htop
+      - gimp
+      - podman
+      - the_silver_searcher
+      - fuse-exfat
+      - filezilla
+      - chromium
+      - google-chrome
+    state: present
+    update_cache: yes
+
+- name: nvm
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+- name: Install node and set version
+  become: yes
+  become_user: root
+  shell: "source /root/.nvm/nvm.sh && nvm install 8.11.3"
+  args:
+    executable: /bin/bash
+
+- name: install pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    version: master
+    dest: "{{ ansible_env.HOME }}/.pyenv"
+# - name: Install jetbrains Toolbox - https://www.jetbrains.com/toolbox-app/
+
+# docker
+# texstudio, texlive-full

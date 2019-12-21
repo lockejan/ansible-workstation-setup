@@ -1,17 +1,17 @@
 ---
-- name: Install packages
-  package:
-     name:
-        - java-1.8.0-openjdk-devel
-        - java-latest-openjdk-devel
-     state: present
-     update_cache: yes
+# - name: install basic packages
+#   import_tasks: common.yml
 
-- name: install gradle
-  command: curl "https://gradle.org/next-steps/?version=6.0.1&format=all"
-#https://gradle.org/install/
+# - name: install multimedia packages
+#   import_tasks: multimedia.yml
 
-# install leiningen
-# install jabber??
-- name: install joplin
-  command: sudo dnf copr enable taw/joplin && sudo dnf install joplin
+- name: config and install zsh related stuff
+  import_tasks: zsh.yml
+# - name: install java and jvm dev packages
+#   import_tasks: java.yml
+
+# - name: config and install vim related stuff
+#   import_tasks: vim8.yml
+
+# - name: install sipgate workstation add-ons
+#   import_tasks: sipgate.yml
