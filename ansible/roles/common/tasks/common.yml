@@ -14,11 +14,6 @@
     name: dnf-plugins-core
     state: latest
 
-# - name: autoremove uneeded packages
-#   dnf:
-#     autoremove: yes
-#   become: yes
-
 - name: get Fedora version
   command: rpm -E %fedora
   register: fedora_version
@@ -33,17 +28,9 @@
     state: latest
 
 - name: import pubKey of microsoft repo
-  command: sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-
-- name: Add dotnet core repo and install sdk 3.0
-  yum_repository:
-    name: dotnet core
-    description: microsoft repo for dotnet core sdk's
-    baseurl: https://packages.microsoft.com/config/fedora/30/prod/
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-    gpgcheck: true
-    enabled: yes
-    file: microsoft-prod
+  rpm_key: 
+    state: present
+    key: https://packages.microsoft.com/keys/microsoft.asc
 
 - name: create repo entry for vs code
   yum_repository:
@@ -79,8 +66,10 @@
       - flatpak
       - curl
       - git
+      - i3
       - ripgrep
       - php-cli
+      - golang
       - gnome-shell-extension-pomodoro
       - vlc
       - trash-cli
@@ -96,28 +85,19 @@
       - filezilla
       - chromium
       - google-chrome
+      - gnome-latex
+      - texlive-scheme-tetex
     state: present
     update_cache: yes
 
-- name: nvm
-  shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
-  args:
-    creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
 
-- name: Install node and set version
-  become: yes
-  become_user: root
-  shell: "source /root/.nvm/nvm.sh && nvm install 8.11.3"
-  args:
-    executable: /bin/bash
-
-- name: install pyenv
-  git:
-    repo: https://github.com/pyenv/pyenv.git
-    version: master
-    dest: "{{ ansible_env.HOME }}/.pyenv"
-# - name: Install jetbrains Toolbox - https://www.jetbrains.com/toolbox-app/
-
-# docker
-# texstudio, texlive-full
+- name: autoremove uneeded packages
+  dnf:
+    autoremove: yes
+  ignore_errors: yes

@@ -11,8 +11,6 @@
   get_url: https://truefire.com/player/TrueFireInstaller.AppImage
   dest: "{{ ansible_env.HOME }}/apps/"
 
-# desktop wallpaper
-
 - name: Remove Rhythmbox
   become: yes
   package:
@@ -27,6 +25,7 @@
 - name: install teamViewer
   package:
     name: teamviewer
+    state: present
 
 - name: install skype repository
   get_url:
@@ -42,13 +41,6 @@
 
 # - name: execute spotify installer
 #   command: "lpf update"
-
-- name: Add the flathub flatpak repository remote to the user installation
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
 
 # - name: Install the spotify flatpak
 #   flatpak:

@@ -1,11 +1,9 @@
 ---
 - name: change shell to zsh for root
-  command: "chsh -s /bin/zsh vagrant" #root
+  command: "chsh -s /bin/zsh root"
 
 - name: change shell to zsh for user
   command: "chsh -s /bin/zsh {{ ansible_ssh_user }}"
-
-# nerdfonts
 
 - name: Get oh-my-zsh installer
   get_url:
@@ -13,7 +11,7 @@
     dest: "{{ ansible_env.HOME }}/install.sh"
 
 - name: Install oh-my-zsh
-  command: "sh ~/install.sh"
+  command: "{{ ansible_env.HOME }}/install.sh"
   ignore_errors: yes
 
 - name: install gradle completion
@@ -34,17 +32,6 @@
     version: master
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
-- name: create user font directory
-  file:
-    path: "{{ ansible_env.HOME }}/.fonts"
-    state: directory
-
-- name: download and unzip NerdFont
-  unarchive:
-    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Meslo.zip
-    dest: "{{ ansible_env.HOME }}/.fonts/"
-    remote_src: yes
-
 - name: install spaceship theme
   git:
     repo: https://github.com/denysdovhan/spaceship-prompt.git
@@ -52,12 +39,6 @@
 
 - name: Create a symbolic link
   file:
-    src: ~/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme
-    dest: ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
-    # owner: foo
-    # group: foo
+    src: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh-theme"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
     state: link
-# - name: Get zsh dotfile
-#   git:
-#     repo:
-#     dest: "{{ ansible_env.HOME }}/.zshrc"
