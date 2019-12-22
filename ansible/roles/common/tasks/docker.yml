@@ -13,6 +13,7 @@
 - name: start docker service
   systemd:
     state: started
+    enabled: yes
     name: docker
 
 - name: create docker group for user
