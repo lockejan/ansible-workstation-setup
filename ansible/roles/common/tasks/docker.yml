@@ -1,0 +1,23 @@
+---
+- name: setup docker CE repo
+  command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
+  args:
+    creates: /etc/yum.repos.d/docker-ce.repo
+
+- name: install docker CE
+  package:
+    name: docker-ce
+    state: present
+    update_cache: yes
+
+- name: start docker service
+  systemd:
+    state: started
+    name: docker
+
+- name: create docker group for user
+  command: "groupadd docker"
+  ignore_errors: yes
+
+- name: add user to docker
+  command: "usermod -aG docker {{ ansible_ssh_user }}"
