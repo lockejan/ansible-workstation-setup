@@ -5,4 +5,12 @@
   become: true
   roles:
      - role: common
+     - role: chrome
+     - role: dev
+     - role: docker
+     - role: dotfiles
      - role: individual
+     - role: zsh
+     - role: t480
+     - role: vim
+     - role: vs-code

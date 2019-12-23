@@ -1,0 +1,55 @@
+---
+- name: enable copr for flat-remix-icons
+  command: "dnf copr enable -y daniruiz/flat-remix"
+  args:
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daniruiz:flat_remix.repo
+
+- name: install flat-remix-icons
+  package:
+     name: flat-remix
+     state: present
+     update_cache: yes
+
+- name: Enable Night Light
+  dconf:
+     key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+     value: true
+
+- name: Set Night Light Temperature
+  dconf:
+     key: /org/gnome/settings-daemon/plugins/color/night-light-temperature
+     value: uint32 5500
+
+- name: install AdMin theme prerequisites
+  package:
+     name: sassc
+     state: present
+
+- name: get AdMin theme resources
+  git:
+     repo: https://github.com/nrhodes91/AdMin
+     dest: "{{ ansible_env.HOME }}/.themes/AdMin"
+
+- name: create symlinks from admin repo to user-themes folder
+  command: for theme in ~/.themes/AdMin/admin-gtk*; do ln -sf $theme ~/.themes/; done
+
+- name: compile sass from AdMin theme
+  command: find ~/.themes/AdMin -type f -name parse-sass.sh -execdir {} \;
+
+- name: install gnome tweaks and some shell extensions
+  package:
+     name:
+        - gnome-tweaks
+        - gnome-shell-extension-user-theme
+        - gnome-shell-extension-dash-to-dock
+        - gnome-shell-extension-desktop-icons
+        - gnome-shell-extension-pomodoro
+        - gnome-latex
+     state: present
+
+- name: Remove Rhythmbox
+  package:
+     name: rhythmbox
+     state: absent
+###- name: setup printer??
+###- name: desktop wallpaper
