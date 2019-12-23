@@ -1,0 +1,12 @@
+---
+name: get dotfile repo
+git: ""
+
+- name: Get zsh dotfile
+  git:
+    repo: ""
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+  ignore_errors: yes
+
+
+#- name: get coc config, vimrc,....

@@ -1,0 +1,16 @@
+---
+- name: import google chrome repo
+  yum_repository:
+     name: google-chrome
+     description: google-chrome
+     baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+     enabled: yes
+     gpgcheck: true
+     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+     file: google-chrome
+
+- name: install chrome
+  package:
+     name: google-chrome
+     state: present
+     update_cache: yes

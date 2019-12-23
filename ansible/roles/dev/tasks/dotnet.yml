@@ -1,0 +1,29 @@
+---
+- name: Add dotnet core repo
+  yum_repository:
+     name: dotnet-core-packages
+     description: packages-microsoft-com-prod
+     baseurl: https://packages.microsoft.com/fedora/30/prod/
+     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+     gpgcheck: true
+     enabled: yes
+     file: microsoft-prod
+
+- name: Add mono develop repo
+  yum_repository:
+     name: mono-centos8-stable
+     description: mono-centos8-stable
+     baseurl: https://download.mono-project.com/repo/centos8-stable/
+     gpgkey: https://download.mono-project.com/repo/xamarin.gpg
+     gpgcheck: true
+     enabled: yes
+     file: mono-centos8-stable
+
+- name: Install dotnet-core, mono and fsharp
+  package:
+     name:
+        - dotnet-sdk-3.0
+        - mono-complete
+        - fsharp
+     state: present
+     update_cache: yes

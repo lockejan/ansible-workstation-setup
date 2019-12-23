@@ -1,0 +1,22 @@
+---
+- name: install php and golang
+  package:
+      name:
+        - php-cli
+        - golang
+      state: present
+
+- name: install java 
+  import_tasks: java.yml
+
+- name: install scala
+  import_tasks: scala.yml
+
+- name: install clojure
+  import_tasks: clojure.yml
+
+- name: install python environment
+  import_tasks: python.yml
+
+- name: install c#, mono, f#
+  import_tasks: dotnet.yml

@@ -1,0 +1,12 @@
+---
+- name: Make sure $HOME/bin exists
+  file:
+     path: "{{ ansible_env.HOME }}/bin/"
+     state: directory
+     mode: "0755"
+
+- name: Install leiningen script
+  get_url:
+     url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+     dest: "{{ ansible_env.HOME }}/bin/"
+     mode: "0755"

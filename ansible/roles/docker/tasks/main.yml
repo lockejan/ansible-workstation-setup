@@ -2,19 +2,19 @@
 - name: setup docker CE repo
   command: "dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo"
   args:
-    creates: /etc/yum.repos.d/docker-ce.repo
+     creates: /etc/yum.repos.d/docker-ce.repo
 
 - name: install docker CE
   package:
-    name: docker-ce
-    state: present
-    update_cache: yes
+     name: docker-ce
+     state: present
+     update_cache: yes
 
 - name: start docker service
   systemd:
-    state: started
-    enabled: yes
-    name: docker
+     state: started
+     enabled: yes
+     name: docker
 
 - name: create docker group for user
   command: "groupadd docker"

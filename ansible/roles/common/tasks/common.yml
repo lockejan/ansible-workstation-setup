@@ -27,66 +27,35 @@
         - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm"
      state: latest
 
-- name: import pubKey of microsoft repo
-  rpm_key:
-     state: present
-     key: https://packages.microsoft.com/keys/microsoft.asc
-
-- name: create repo entry for vs code
-  yum_repository:
-     name: code
-     description: Visual Studio Code
-     baseurl: https://packages.microsoft.com/yumrepos/vscode
-     enabled: yes
-     gpgcheck: true
-     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-     file: vscode
-
-- name: import google chrome repo
-  yum_repository:
-     name: google-chrome
-     description: google-chrome
-     baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
-     enabled: yes
-     gpgcheck: true
-     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-     file: google-chrome
-
 - name: Install basic packages
   package:
      name:
-        - vim
-        - zsh
-        - tmux
-        - code
+        - curl
+        - chromium
+        - filezilla
+        - flatpak
+        - fuse-exfat
+        - gimp
+        - git
         - gnupg2
+        - htop
+        - i3
+        - neofetch
+        - nnn
+        - podman
+        - ranger
+        - ripgrep
+        - texlive-scheme-tetex
+        - the_silver_searcher
+        - tilix
+        - tmux
+        - trash-cli
         - util-linux-user
         - vagrant
+        - vim
         - VirtualBox
-        - flatpak
-        - curl
-        - git
-        - i3
-        - ripgrep
-        - php-cli
-        - golang
-        - gnome-shell-extension-pomodoro
         - vlc
-        - trash-cli
-        - tilix
-        - ranger
-        - nnn
-        - neofetch
-        - htop
-        - gimp
-        - podman
-        - the_silver_searcher
-        - fuse-exfat
-        - filezilla
-        - chromium
-        - google-chrome
-        - gnome-latex
-        - texlive-scheme-tetex
+        - zsh
      state: present
      update_cache: yes
 

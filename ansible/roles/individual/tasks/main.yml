@@ -50,7 +50,7 @@
 - name: get AdMin theme resources
   git:
      repo: https://github.com/nrhodes91/AdMin
-     dest: "~/.themes/AdMin"
+     dest: "{{ ansible_env.HOME }}/.themes/AdMin"
 
 - name: create symlinks from admin repo to user-themes folder
   command: for theme in ~/.themes/AdMin/admin-gtk*; do ln -sf $theme ~/.themes/; done
@@ -86,6 +86,8 @@
         - gnome-shell-extension-user-theme
         - gnome-shell-extension-dash-to-dock
         - gnome-shell-extension-desktop-icons
+        - gnome-shell-extension-pomodoro
+        - gnome-latex
      state: present
 ###- name: setup printer??
 ###- name: desktop wallpaper

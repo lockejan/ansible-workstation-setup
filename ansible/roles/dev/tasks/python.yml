@@ -1,0 +1,27 @@
+---
+- name: install pyenv
+  git:
+     repo: https://github.com/pyenv/pyenv.git
+     version: master
+     dest: "{{ ansible_env.HOME }}/.pyenv"
+
+- name: Install python and set version
+  shell: "pyenv install 3.8.0"
+
+- name: install pipenv
+  pip:
+     name: pipenv
+     executable: pip3
+
+- name: get temporary poetry installer script
+  get_url:
+     url: https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
+     dest: "{{ ansible_env.HOME }}/get-poetry.py"
+
+- name: install poetry
+  shell: "python3 {{ ansible_env.HOME }}/get-poetry.py"
+
+- name: Remove poetry-installer file
+  file:
+     path: "{{ ansible_env.HOME }}/get-poetry.py"
+     state: absent

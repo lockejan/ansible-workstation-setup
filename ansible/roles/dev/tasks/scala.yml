@@ -1,0 +1,14 @@
+---
+- name: Import sbt repo for scala
+  yum_repository:
+     name: bintray-sbt-rpm
+     description: bintray-sbt
+     baseurl: https://sbt.bintray.com/rpm
+     enabled: yes
+     file: bintray-sbt-rpm
+
+- name: install sbt
+  package:
+     name: sbt
+     state: present
+     update_cache: yes

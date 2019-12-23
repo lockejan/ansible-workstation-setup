@@ -1,0 +1,36 @@
+---
+- name: Install java packages
+  package:
+     name:
+        - java-1.8.0-openjdk-devel
+        - java-latest-openjdk-devel
+     state: present
+     update_cache: yes
+
+- name: create maven directory
+  file:
+     path: "/opt/maven"
+     state: directory
+
+- name: download and unzip maven
+  unarchive:
+     src: https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip
+     dest: "/opt/maven"
+     remote_src: yes
+
+- name: create gradle directory
+  file:
+     path: "/opt/gradle"
+     state: directory
+
+- name: download and unzip gradle
+  unarchive:
+     src: https://services.gradle.org/distributions/gradle-6.0.1-bin.zip
+     dest: "/opt/gradle"
+     remote_src: yes
+
+- name: install jabba for java sdk management
+  shell: >
+     curl -o- -sL https://github.com/shyiko/jabba/raw/master/install.sh | bash
+  args:
+     creates: "{{ ansible_env.HOME }}/.jabba/jabba.sh"
