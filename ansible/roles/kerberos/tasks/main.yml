@@ -1,0 +1,11 @@
+---
+- name: install kerberos packages
+  package:
+     name:
+        - krb5-libs
+        - krb5-workstation
+
+- name: copy kerberos config
+  copy:
+     src: krb5.conf
+     dest: /etc/

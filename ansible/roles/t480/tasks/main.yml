@@ -11,8 +11,6 @@
         - vdpauinfo
         - libva-vdpau-driver
         - libva-utils
-        - krb5-libs
-        - krb5-workstation
 
 - name: nvidia prime support
   shell: |
@@ -22,15 +20,11 @@
      options nvidia NVreg_DynamicPowerManagement=0x02
      EOF
 
-- name: enable gopass copr
-  command: "dnf copr enable -y daftaupe/gopass"
-  args:
-     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daftaupe:gopass.repo
-
-- name: install gopass
+- name: install kerberos packages
   package:
-     name: gopass
-     state: present
+     name:
+        - krb5-libs
+        - krb5-workstation
 
 - name: copy kerberos config
   copy:

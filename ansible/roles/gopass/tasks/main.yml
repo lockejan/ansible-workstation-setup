@@ -1,0 +1,10 @@
+---
+- name: enable gopass copr
+  command: "dnf copr enable -y daftaupe/gopass"
+  args:
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daftaupe:gopass.repo
+
+- name: install gopass
+  package:
+     name: gopass
+     state: present
