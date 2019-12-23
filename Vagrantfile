@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   ####### Provision #######
   config.ssh.forward_agent = true
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "ansible/main.yml"
+    ansible.playbook = "Fedora/main.yml"
     ansible.verbose = true
     #ansible.inventory_path = "ansible/inventory.ansible"
     ansible.extra_vars = {
