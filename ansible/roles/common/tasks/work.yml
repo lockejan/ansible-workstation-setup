@@ -1,38 +1,38 @@
 ---
-# - name: install airtame
-#   flatpak:
-#     name: com.airtame.Client
-#     state: present
+- name: install airtame
+  flatpak:
+     name: com.airtame.Client
+     state: present
 
 - name: install nvidia-driver
   package:
-    name:
-      - akmod-nvidia
-      - vdpauinfo
-      - libva-vdpau-driver
-      - libva-utils
-      - krb5-libs
-      - krb5-workstation
+     name:
+        - akmod-nvidia
+        - vdpauinfo
+        - libva-vdpau-driver
+        - libva-utils
+        - krb5-libs
+        - krb5-workstation
 
 - name: nvidia prime support
   shell: |
-        cat > /etc/modprobe.d/nvidia.conf <<EOF
-        # Enable DynamicPwerManagement
-        # http://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/dynamicpowermanagement.html
-        options nvidia NVreg_DynamicPowerManagement=0x02
-        EOF
+     cat > /etc/modprobe.d/nvidia.conf <<EOF
+     # Enable DynamicPwerManagement
+     # http://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/dynamicpowermanagement.html
+     options nvidia NVreg_DynamicPowerManagement=0x02
+     EOF
 
 - name: enable gopass copr
   command: "dnf copr enable -y daftaupe/gopass"
   args:
-    creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daftaupe:gopass.repo
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:daftaupe:gopass.repo
 
 - name: install gopass
   package:
-    name: gopass
-    state: present
+     name: gopass
+     state: present
 
 - name: copy kerberos config
   copy:
-    src: krb5.conf
-    dest: /etc/
+     src: krb5.conf
+     dest: /etc/

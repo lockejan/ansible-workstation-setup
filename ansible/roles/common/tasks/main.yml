@@ -1,15 +1,15 @@
 ---
-# - name: install basic packages
-#   import_tasks: common.yml
+- name: install basic packages
+  import_tasks: common.yml
 
-# - name: install multimedia packages
-#   import_tasks: multimedia.yml
+- name: install multimedia packages
+  import_tasks: multimedia.yml
 
-# - name: config and install zsh related stuff
-#   import_tasks: zsh.yml
+- name: config and install zsh related stuff
+  import_tasks: zsh.yml
 
-# - name: install dev environments and packages
-#   import_tasks: dev.yml
+- name: install dev environments and packages
+  import_tasks: dev.yml
 
 - name: install docker environment
   import_tasks: docker.yml
@@ -17,8 +17,8 @@
 - name: config and install vim related stuff
   import_tasks: vim8.yml
 
-- name: setup dotfiles
-  import_tasks: dotfiles.yml
+# - name: setup dotfiles
+#   import_tasks: dotfiles.yml
 
-# - name: install work specific stuff
-#   import_tasks: work.yml
+- name: install work specific stuff
+  import_tasks: work.yml
