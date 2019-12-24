@@ -1,7 +1,4 @@
 ---
-- name: config gnome desktop
-  import_tasks: gnome.yml
-
 - name: install additional apps
   import_tasks: apps.yml
 
