@@ -1,9 +1,4 @@
 ---
-- name: install airtame
-  flatpak:
-     name: com.airtame.Client
-     state: present
-
 - name: install nvidia-driver
   package:
      name:
@@ -19,14 +14,3 @@
      # http://download.nvidia.com/XFree86/Linux-x86_64/440.31/README/dynamicpowermanagement.html
      options nvidia NVreg_DynamicPowerManagement=0x02
      EOF
-
-- name: install kerberos packages
-  package:
-     name:
-        - krb5-libs
-        - krb5-workstation
-
-- name: copy kerberos config
-  copy:
-     src: krb5.conf
-     dest: /etc/
