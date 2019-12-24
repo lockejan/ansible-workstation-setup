@@ -1,13 +1,11 @@
 ---
-name: get dotfile repo
-git: ""
+- name: get dotfile repo
+  git: ""
 
 - name: Get zsh dotfile
   git:
-    repo: ""
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+     repo: ""
+     dest: "{{ ansible_env.HOME }}/.zshrc"
   ignore_errors: yes
-
-
-#- name: get coc config, vimrc,....
+#- name: get coc config, vimrc, gitconfig, gitignore....
 # even more config files?????????

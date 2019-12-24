@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
     ansible.verbose = true
     #ansible.inventory_path = "inventory.ansible"
     ansible.extra_vars = {
-    host: "localhost",
-    ansible_ssh_user: "root"
+    #host: "localhost",
+    ansible_system_user: "vagrant"
     }
   end
 end

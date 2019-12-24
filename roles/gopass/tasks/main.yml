@@ -12,4 +12,4 @@
 - name: get keystore
   git:
      repo: { { gopass_repo } }
-     dest: "{{ ansible_env.HOME }}/.password-store-ht"
+     dest: "{{ ansible_env.HOME }}/.{{ password_store }}"

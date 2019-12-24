@@ -1,0 +1,27 @@
+---
+- name: change shell to zsh for root
+  become_user: root
+  command: "chsh -s /bin/zsh root"
+
+- name: change shell to zsh for user
+  command: "chsh -s /bin/zsh {{ ansible_system_user }}"
+
+- name: Get oh-my-zsh installer
+  get_url:
+     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+     dest: "{{ ansible_env.HOME }}/install.sh"
+
+- name: make installer executable
+  file:
+     dest: "{{ ansible_env.HOME }}/install.sh"
+     mode: a+x
+
+- name: Install oh-my-zsh
+  shell: "{{ ansible_env.HOME }}/install.sh"
+  args:
+     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+
+- name: remove zsh-installer
+  file:
+     path: "{{ ansible_env.HOME }}/install.sh"
+     state: absent

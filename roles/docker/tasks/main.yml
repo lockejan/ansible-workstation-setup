@@ -21,4 +21,4 @@
   ignore_errors: yes
 
 - name: add user to docker
-  command: "usermod -aG docker {{ ansible_ssh_user }}"
+  command: "usermod -aG docker {{ ansible_system_user }}"

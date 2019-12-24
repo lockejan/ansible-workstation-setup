@@ -3,8 +3,8 @@
   package:
      name: "@multimedia"
      state: present
-     install_weak_deps: no
-     exclude: PackageKit-gstreamer-plugin
+     #  install_weak_deps: no
+     #  exclude: PackageKit-gstreamer-plugin
 
 - name: install sound-and-video complement package
   package:
