@@ -8,3 +8,8 @@
   package:
      name: gopass
      state: present
+
+- name: get keystore
+  git:
+     repo: { { gopass_repo } }
+     dest: "{{ ansible_env.HOME }}/.password-store-ht"

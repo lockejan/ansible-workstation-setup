@@ -1,0 +1,18 @@
+---
+- hosts: all
+  connection: local
+  gather_facts: yes
+  become: true
+  roles:
+     - role: common
+     # - role: chrome
+     # - role: dev
+     # - role: docker
+     # - role: dotfiles
+     # - role: gopass
+     # - role: individual
+     # - role: kerberos
+     # - role: lenovo-t480
+     # - role: oh-my-zsh
+     # - role: vim
+     # - role: vs-code

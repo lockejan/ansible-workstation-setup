@@ -26,4 +26,4 @@ else
 fi
 
 # execute playbooks
-sudo ansible-playbook $distro/main.yml --extra-vars "repo=$1"  -vvv
+sudo ansible-playbook main.yml --extra-vars "repo=$1"  -vvv

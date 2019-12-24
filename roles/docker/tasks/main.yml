@@ -10,7 +10,7 @@
      state: present
      update_cache: yes
 
-- name: start docker service
+- name: register and start docker service
   systemd:
      state: started
      enabled: yes

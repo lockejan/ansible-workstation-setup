@@ -28,6 +28,11 @@
      state: present
      update_cache: yes
 
+# - name: Install the signal flatpak
+#   flatpak:
+#      name: https://flathub.org/repo/appstream/org.signal.Signal.flatpakref
+#      state: present
+
 # - name: Download nextCloud appImage
 #   get_url: https://download.nextcloud.com/desktop/releases/Linux/latest
 #   dest: "{{ ansible_env.HOME }}/apps/"
@@ -72,11 +77,6 @@
 #     name: https://flathub.org/repo/appstream/com.spotify.Client.flatpakref
 #     state: present
 #     remote: flathub
-
-# - name: Install the signal flatpak
-#   flatpak:
-#      name: https://flathub.org/repo/appstream/org.signal.Signal.flatpakref
-#      state: present
 
 - name: install additional tools
   package:

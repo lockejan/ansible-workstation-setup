@@ -1,33 +1,27 @@
 ---
 - name: update packages
-  dnf:
+  package:
      name: "*"
      state: latest
 
 - name: install the 'Development tools' package group
-  dnf:
+  package:
      name: "@Development tools"
      state: present
 
 - name: install plugins core
-  dnf:
+  package:
      name: dnf-plugins-core
      state: latest
 
-- name: get Fedora version
-  command: rpm -E %fedora
-  register: fedora_version
-  args:
-     warn: false
-
 - name: install rpmfusion
-  dnf:
+  package:
      name:
-        - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm"
-        - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm"
+        - "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm"
+        - "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm"
      state: latest
 
-- name: Install basic packages
+- name: install basic packages
   package:
      name:
         - curl
@@ -45,7 +39,6 @@
         - podman
         - ranger
         - ripgrep
-        - texlive-scheme-tetex
         - the_silver_searcher
         - tilix
         - tmux
