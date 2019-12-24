@@ -29,11 +29,9 @@ If you want to change and test the setup you can do that by using [vagrant](http
 For vagrant you also need virtualBox (or another provider but then you also have to change the used vagrantBox). On Fedora/RHEL you first need to enable [rpm-fusion](https://rpmfusion.org/) for that.
 Debian-based already has it in it's packages.
 
-`sudo apt install vagrant`
-`sudo apt install virtualbox`
+`sudo apt install vagrant virtualbox`
 
-`sudo dnf install vagrant`
-`sudo dnf install VirtualBox`
+`sudo dnf install vagrant VirtualBox`
 
 ## Up and running
 

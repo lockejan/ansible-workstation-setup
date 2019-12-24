@@ -10,6 +10,8 @@
   package:
      name: "@sound-and-video"
      state: present
-# - name: install texlive
-#   package:
-#      name: texlive-scheme-tetex
+
+- name: install texlive
+  package:
+     name: texlive-scheme-tetex
+     state: present
