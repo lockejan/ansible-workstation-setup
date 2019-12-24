@@ -25,7 +25,7 @@
   package:
      name:
         - curl
-        - chromium
+        - chromium #maybe broken deps
         - filezilla
         - flatpak
         - fuse-exfat

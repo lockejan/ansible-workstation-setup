@@ -21,6 +21,7 @@ Before firing up the playbooks make sure ansible is installed on your machine.
 ### RHEL/Fedora
 
 `sudo yum install ansible`
+
 `sudo dnf install ansible`
 
 If you want to change and test the setup you can do that by using [vagrant](https://www.vagrantup.com/downloads.html).
@@ -29,9 +30,9 @@ For vagrant you also need virtualBox (or another provider but then you also have
 Debian-based already has it in it's packages.
 
 `sudo apt install vagrant`
-`sudo dnf install vagrant`
-
 `sudo apt install virtualbox`
+
+`sudo dnf install vagrant`
 `sudo dnf install VirtualBox`
 
 ## Up and running

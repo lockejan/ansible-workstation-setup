@@ -10,7 +10,7 @@
      # - role: docker
      # - role: dotfiles
      # - role: gopass
-     # - role: individual
+     - role: individual
      # - role: kerberos
      # - role: lenovo-t480
      # - role: oh-my-zsh

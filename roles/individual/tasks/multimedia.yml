@@ -1,11 +1,15 @@
 ---
----
 - name: multimedia post-install
-  shell: 'dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y'
+  package:
+     name: "@multimedia"
+     state: present
+     install_weak_deps: no
+     exclude: PackageKit-gstreamer-plugin
 
 - name: install sound-and-video complement package
-  shell: "dnf groupupdate sound-and-video -y"
-
-- name: install texlive
   package:
-     name: texlive-scheme-tetex
+     name: "@sound-and-video"
+     state: present
+# - name: install texlive
+#   package:
+#      name: texlive-scheme-tetex
