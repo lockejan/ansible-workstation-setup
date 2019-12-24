@@ -1,4 +1,4 @@
-# ansible-workstation-setup
+# ansible-workstation-setup (work in progress)
 
 This project aims to provide a quick local workstation setup through several ansible roles.
 The idea is to have generic roles which are compatible with Fedora and Debian-based distros.
@@ -32,6 +32,10 @@ Debian-based already has it in it's packages.
 `sudo apt install vagrant virtualbox`
 
 `sudo dnf install vagrant VirtualBox`
+
+### Role specifics
+
+-  for kerberos you need to place a kerberos config file named `krb5.conf` in the files dir of the role.
 
 ## Up and running
 
