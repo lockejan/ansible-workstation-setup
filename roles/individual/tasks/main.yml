@@ -1,9 +1,9 @@
 ---
-# - name: install additional apps
-#   import_tasks: apps.yml
+- name: install additional apps
+  import_tasks: apps.yml
 
-# - name: setup additional multimedia things
-#   import_tasks: multimedia.yml
+- name: setup additional multimedia things
+  import_tasks: multimedia.yml
 
 - name: install nerd fonts
   import_tasks: fonts.yml
