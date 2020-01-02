@@ -1,0 +1,8 @@
+---
+- name: download clojure language server for vim
+  get_url:
+     url: https://github.com/snoe/clojure-lsp/releases/download/release-20191223T204324/clojure-lsp
+     dest: "{{ amsible_env.HOME }}/bin/"
+     mode: "0755"
+     # name: update coc-settings
+# https://github.com/snoe/dotfiles/blob/master/home/.vim/coc-settings.json

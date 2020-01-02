@@ -1,0 +1,5 @@
+---
+- name: install texlive
+  package:
+     name: texlive-scheme-full
+     state: present
