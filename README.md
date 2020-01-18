@@ -1,11 +1,11 @@
 # ansible-workstation-setup (work in progress)
 
 This project aims to provide a quick local workstation setup through several ansible roles.
-The idea is to have generic roles which are compatible with Fedora and Debian-based distros.
+The idea is to have generic roles which are not just compatible with Fedora.
 
-It makes use of the [package module](https://docs.ansible.com/ansible/latest/modules/package_module.html) of ansible which is a generic way of using package manager modules.
+It makes use of ansibles [package module](https://docs.ansible.com/ansible/latest/modules/package_module.html) which is a generic package manager abstraction module that automatically recognizes and invokes the distro's package manager.
 
-Feel free to fork or change to your liking.
+Feel free to fork or change  to your liking.
 
 The setup comes also with an opiniated way of handling dotfiles.
 If you don't want that just comment the dotfile role in `setup.yml`
@@ -13,10 +13,6 @@ If you don't want that just comment the dotfile role in `setup.yml`
 ## Prerequisites
 
 Before firing up the playbooks make sure ansible is installed on your machine.
-
-### Debian-based
-
-`sudo apt install ansible`
 
 ### RHEL/Fedora
 
@@ -27,9 +23,6 @@ Before firing up the playbooks make sure ansible is installed on your machine.
 If you want to change and test the setup you can do that by using [vagrant](https://www.vagrantup.com/downloads.html).
 
 For vagrant you also need virtualBox (or another provider but then you also have to change the used vagrantBox). On Fedora/RHEL you first need to enable [rpm-fusion](https://rpmfusion.org/) for that.
-Debian-based already has it in it's packages.
-
-`sudo apt install vagrant virtualbox`
 
 `sudo dnf install vagrant VirtualBox`
 
