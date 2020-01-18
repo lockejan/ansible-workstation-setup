@@ -32,7 +32,7 @@ For vagrant you also need virtualBox (or another provider but then you also have
 
 ## Up and running
 
-Check out the roles, uncomment what you want to be installend in `setup.yml`, update your inventory file and start with:
+Check out the roles and uncomment what you want to be installed in `setup.yml`. Then update your inventory file and start with:
 
 `sudo ansible-playbook setup.yml`
 
