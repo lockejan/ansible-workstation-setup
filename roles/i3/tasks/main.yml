@@ -1,0 +1,6 @@
+---
+- name: install deps for ueberzug
+  package:
+     name:
+        - i3
+        # i3-gaps, compton,

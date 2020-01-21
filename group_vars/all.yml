@@ -1,3 +1,3 @@
 ---
 password_store: #your-pw-store-name
-ansible_system_user: #system-username
+ansible_system_user: vagrant #system-username

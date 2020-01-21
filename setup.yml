@@ -1,13 +1,12 @@
 ---
 - hosts: all
-  connection: local
-  gather_facts: yes
-  become: true
   become_user: "{{ ansible_system_user }}"
+  become: yes
+  become_method: sudo
   roles:
      # - role: common
      # - role: chrome
-     # - role: dev
+     - role: dev
      # - role: docker
      # - role: dotfiles
      # - role: gopass
@@ -18,3 +17,5 @@
      # - role: latex
      # - role: vim
      # - role: vs-code
+     # - role: ueberzug
+     # - role: i3

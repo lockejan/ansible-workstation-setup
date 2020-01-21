@@ -1,5 +1,6 @@
 ---
 - name: update packages
+  become: yes
   package:
      name: "*"
      state: latest
@@ -33,11 +34,8 @@
         - git
         - gnupg2
         - htop
-        - i3
         - neofetch
-        - nnn
         - podman
-        - ranger
         - ripgrep
         - the_silver_searcher
         - tilix
@@ -46,8 +44,11 @@
         - util-linux-user
         - vagrant
         - vim
+        - vifm
         - VirtualBox
         - vlc
         - zsh
+        - zathura
+        - zathura-pdf-mupdf
      state: present
      update_cache: yes

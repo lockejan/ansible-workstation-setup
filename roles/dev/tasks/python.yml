@@ -5,8 +5,24 @@
      version: master
      dest: "{{ ansible_env.HOME }}/.pyenv"
 
-- name: Install python and set version
-  shell: "pyenv install 3.8.0"
+# - name: install build prerequesites for pyenv
+#   package:
+#      name:
+#         - zlib-devel
+#         - bzip2
+#         - bzip2-devel
+#         - readline-devel
+#         - sqlite
+#         - sqlite-devel
+#         - openssl-devel
+#         - xz
+#         - xz-devel
+#         - libffi-devel
+#         - findutils
+#      state: present
+
+# - name: Install python and set version
+#   shell: "{{ ansible_env.HOME }}/.pyenv/bin/pyenv install 3.8.0" #need to provide path in bashrc
 
 - name: install pipenv
   pip:
@@ -19,7 +35,7 @@
      dest: "{{ ansible_env.HOME }}/get-poetry.py"
 
 - name: install poetry
-  shell: "python3 {{ ansible_env.HOME }}/get-poetry.py"
+  shell: "python3 {{ ansible_env.HOME }}/get-poetry.py -y"
 
 - name: Remove poetry-installer file
   file:

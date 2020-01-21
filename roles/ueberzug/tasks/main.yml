@@ -1,0 +1,11 @@
+---
+- name: install deps for ueberzug
+  package:
+     name:
+        - libX11-devel
+        - libXext-devel
+     state: present
+
+- name: install ueberzug via pip
+  pip:
+     name: ueberzug
