@@ -82,6 +82,13 @@
         - transmission
         - mediawriter
         - android-file-transfer
+        - anki
+        - nextcloud-client
+        - neovim
+        - joplin
+        - thunderbird
+        - chromium
+        - filezilla
      state: present
 
 - name: install airtame

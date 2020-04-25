@@ -10,3 +10,14 @@
   package:
      name: "@sound-and-video"
      state: present
+
+- name: install audio apps
+  package:
+     name:
+        - audacity
+        - pavucontrol
+        - soundconverter
+        - vdpauinfo
+        - v4l2loopback
+        - transmission
+     state: present
