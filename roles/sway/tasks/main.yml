@@ -1,0 +1,17 @@
+---
+- name: install sway and deps for config
+  package:
+     name:
+        - sway
+        - dunst
+        - rofi
+        - network-manager-applet
+        - lxappearance
+        - py3status
+        - qutebrowser
+        - mako
+        - grim
+        - wl-clipboard
+        - wofi
+        - swaylock
+     state: present
