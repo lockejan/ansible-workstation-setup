@@ -1,6 +1,20 @@
 ---
-- name: install deps for ueberzug
+- name: install i3 and deps for config
   package:
      name:
-        - i3
-        # i3-gaps, compton,
+        - i3-gaps
+        - i3status
+        - compton
+        - feh
+        - dunst
+        - rofi
+        - pango
+        - numlockx
+        - network-manager-applet
+        - lxappearance
+        - py3status
+        - xautolock
+        - yad
+        - qutebrowser
+        - i3lock
+     state: present
