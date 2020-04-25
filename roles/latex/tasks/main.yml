@@ -1,5 +1,7 @@
 ---
 - name: install texlive
   package:
-     name: texlive-scheme-full
+     name:
+        - texlive-scheme-full
+        - jabref
      state: present
