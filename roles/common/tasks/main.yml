@@ -25,15 +25,20 @@
 - name: install basic packages
   package:
      name:
+        - ansible
+        - ack
         - curl
-        - chromium #maybe broken deps
-        - filezilla
         - flatpak
+        - fzf
+        - ffmpeg
         - fuse-exfat
         - gimp
         - git
+        - gparted
         - gnupg2
         - htop
+        - imwheel
+        - lshw
         - neofetch
         - podman
         - ripgrep
@@ -45,10 +50,11 @@
         - vagrant
         - vim
         - vifm
+        - virt-manager
         - VirtualBox
         - vlc
         - zsh
         - zathura
-        - zathura-pdf-mupdf
+        - zathura-plugins-all
      state: present
      update_cache: yes
