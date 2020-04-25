@@ -5,7 +5,7 @@ The idea is to have generic roles which are not just compatible with Fedora.
 
 It makes use of ansibles [package module](https://docs.ansible.com/ansible/latest/modules/package_module.html) which is a generic package manager abstraction module that automatically recognizes and invokes the distro's package manager.
 
-Feel free to fork or change  to your liking.
+Feel free to fork or change to your liking.
 
 The setup comes also with an opiniated way of handling dotfiles.
 If you don't want that just comment the dotfile role in `setup.yml`
@@ -26,6 +26,8 @@ For vagrant you also need virtualBox (or another provider but then you also have
 
 `sudo dnf install vagrant VirtualBox`
 
+NOTE: fedoras vagrant version isn't compatible with virtualBox 6.1 - means you have to build vagrant from [source](https://github.com/hashicorp/vagrant).
+
 ### Role specifics
 
 -  for kerberos you need to place a kerberos config file named `krb5.conf` in the files dir of the role.
@@ -34,6 +36,6 @@ For vagrant you also need virtualBox (or another provider but then you also have
 
 Check out the roles and uncomment what you want to be installed in `setup.yml`. Then update your inventory file and start with:
 
-`sudo ansible-playbook setup.yml`
+`ansible-playbook setup.yml -K`
 
-To just test the setup cd in the root directory of this project and enter `vagrant up` .
+To just test the setup cd in the root directory of this project and enter `vagrant up`.
