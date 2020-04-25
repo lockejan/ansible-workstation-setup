@@ -1,12 +1,16 @@
 ---
 - name: install php and golang
   package:
-      name:
+     name:
         - php-cli
         - golang
-      state: present
+        - cmake
+        - rust
+        - cargo
+        - sassc
+     state: present
 
-- name: install java 
+- name: install java
   import_tasks: java.yml
 
 - name: install scala
