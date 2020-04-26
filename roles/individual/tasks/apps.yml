@@ -83,16 +83,13 @@
         - mediawriter
         - android-file-transfer
         - anki
-        - nextcloud-client
         - neovim
-        - joplin
         - thunderbird
         - chromium
         - filezilla
      state: present
-
-- name: install airtame
-  flatpak:
-     name: com.airtame.Client
-     state: present
-     remote: flathub
+# - name: install airtame
+#   flatpak:
+#      name: com.airtame.Client
+#      state: present
+#      remote: flathub
