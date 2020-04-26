@@ -3,27 +3,27 @@
   git:
      repo: git://github.com/gradle/gradle-completion
      version: master
-     dest: "{{ zsh_custom }}/plugins/gradle-completion"
+     dest: "{{ zsh_custom }}/custom/plugins/gradle-completion"
 
 - name: install zsh-auto suggestions
   git:
      repo: https://github.com/zsh-users/zsh-autosuggestions
      version: master
-     dest: "{{ zsh_custom }}/plugins/zsh-autosuggestions"
+     dest: "{{ zsh_custom }}/custom/plugins/zsh-autosuggestions"
+
+- name: install java helper plugin
+  git:
+     repo: https://github.com/jtaisa/java-zsh-plugin.git
+     version: master
+     dest: "{{ zsh_custom }}/custom/plugins/java"
 
 - name: install syntax highlighting
   git:
      repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
      version: master
-     dest: "{{ zsh_custom }}/plugins/zsh-syntax-highlighting"
+     dest: "{{ zsh_custom }}/custom/plugins/zsh-syntax-highlighting"
 
-- name: install spaceship theme
+- name: install powerlevel10k theme
   git:
-     repo: https://github.com/denysdovhan/spaceship-prompt.git
-     dest: "{{ zsh_custom }}/themes/spaceship-prompt"
-
-- name: Create a symbolic link
-  file:
-     src: "{{ zsh_custom }}/themes/spaceship-prompt/spaceship.zsh-theme"
-     dest: "{{ zsh_custom }}/themes/spaceship.zsh-theme"
-     state: link
+     repo: https://github.com/romkatv/powerlevel10k.git
+     dest: "{{ zsh_custom }}/custom/themes/powerlevel10k"
