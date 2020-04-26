@@ -1,5 +1,5 @@
 ---
-- name: install php and golang
+- name: install basic packages for development
   package:
      name:
         - php-cli
