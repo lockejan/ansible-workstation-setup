@@ -17,6 +17,17 @@
      state: present
      update_cache: yes
 
+- name: enable copr for alacritty terminal
+  command: "dnf copr enable -y pschyska/alacritty"
+  args:
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:pschyska:alacritty.repo
+
+- name: install alacritty
+  package:
+     name: alacritty
+     state: present
+     update_cache: yes
+
 - name: enable copr for signal desktop
   command: "dnf copr enable -y luminoso/Signal-Desktop"
   args:
@@ -87,6 +98,7 @@
         - thunderbird
         - chromium
         - filezilla
+        - qutebrowser
      state: present
 # - name: install airtame
 #   flatpak:
