@@ -1,4 +1,9 @@
 ---
+- name: enable copr for i3-gaps repo
+  command: "dnf copr enable -y gregw/i3desktop"
+  args:
+     creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:gregw:i3-gaps.repo
+
 - name: install i3 and deps for config
   package:
      name:
@@ -15,6 +20,6 @@
         - py3status
         - xautolock
         - yad
-        - qutebrowser
         - i3lock
      state: present
+     update_cache: yes
